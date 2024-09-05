@@ -20,7 +20,7 @@ This project provides tools for geospatial analysis using Turf.js, focusing on b
 
 1. Clone this repository:
    ```
-   git clone https://github.com/phu025/geospatial-analysis-project.git
+   git clone https://github.com/phu024/geospatial-analysis-project.git
    ```
 
 2. Navigate to the project directory:
