@@ -25,6 +25,9 @@ const communityArea = [
     {lat: 12.688974707615138, lng: 101.12355495106506}
 ];
 
+
+const communityArea2 = [{"lat":18.592492762684095,"lng":99.03038627652884},{"lat":18.5883031242841,"lng":99.03843290357352},{"lat":18.585638786075087,"lng":99.03669483213187},{"lat":18.589828489999036,"lng":99.02884132413627}];
+
 // Convert coordinates to GeoJSON format
 function convertToGeoJSON(coordinates, type = 'Point') {
     if (type === 'Point') {
@@ -52,6 +55,7 @@ const radius = 50;
 const sourcePointGeoJSON = convertToGeoJSON(sourcePoint, 'Point');
 const sourceLineGeoJSON = convertToGeoJSON(sourceLine, 'LineString');
 const communityPolygon = convertToGeoJSON(communityArea, 'Polygon');
+const communityPolygon2 = convertToGeoJSON(communityArea2, 'Polygon');
 
 // Find center for line source
 const lineCenterPoint = findLineCenter(sourceLineGeoJSON);
@@ -71,12 +75,17 @@ function checkRelation(communityArea, buffer, bufferType) {
     console.log(`The community area is ${isCompletelyWithin ? 'completely within' : 'not completely within'} the buffer area`);
 }
 
-console.log("Analysis for point source:");
+
+console.log("Analysis for point source with community area 1:");
 checkRelation(communityPolygon, pointBuffer, "point buffer");
 
-console.log("\nAnalysis for line source:");
+console.log("\nAnalysis for line source with community area 1:");
 checkRelation(communityPolygon, lineBuffer, "line buffer (entire line)");
 checkRelation(communityPolygon, lineCenterBuffer, "line center buffer");
+
+console.log("\nAnalysis for point source with community area 2:");
+checkRelation(communityPolygon2, pointBuffer, "point buffer");
+
 
 // Compare buffer areas
 const lineBufferArea = turf.area(lineBuffer);
